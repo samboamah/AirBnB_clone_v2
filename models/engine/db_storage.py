@@ -43,11 +43,7 @@ class DBStorage:
             Base.metadata.drop_all(self.__engine)
 
     def all(self, cls=None):
-        '''query on the current db session all cls objects
-        this method must return a dictionary: (like FileStorage)
-        key = <class-name>.<object-id>
-        value = object
-        '''
+        '''query on the current db session all cls objects'''
         dct = {}
         if cls is None:
             for c in classes.values():
@@ -94,4 +90,4 @@ class DBStorage:
 
     def close(self):
         """closes the working SQLAlchemy session"""
-        self.__session.close()
+        self.__session.remove()
